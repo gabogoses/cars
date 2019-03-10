@@ -83,24 +83,25 @@ router.get("/:carId", (req, res, next) => {
     });
 });
 
-router.patch("/:carId", (req, res, next) => {
-  const id = req.params.carId;
-  const updateOp = {};
-  for (const op of req.body) {
-    updateOp[op.propName] = op.value;
-  }
-  Car.update({ _id: id }, { $set: updateOp })
-    .exec()
-    .then(result => {
-      console.log(result);
-      res.status(200).json({
-        message: "Car updated 👌🏼"
-      });
-    })
-    .catch(err => {
-      console.log(err);
-      res.status(500).json({ error: err });
-    });
+router.post("/update/:carId", (req, res, next) => {
+  Car.findById(req.params.carId, function(err, cars) {
+    if (!cars) res.status(404).send("car is not found");
+    else {
+      // res.status(404).send(req.body);
+      cars.name = req.body.name;
+      cars.availability = req.body.availability;
+      cars.station = req.body.station;
+
+      cars
+        .save()
+        .then(cars => {
+          res.json("Update complete");
+        })
+        .catch(err => {
+          res.status(400).send("unable to update the database");
+        });
+    }
+  });
 });
 
 router.delete("/:carId", (req, res, next) => {
