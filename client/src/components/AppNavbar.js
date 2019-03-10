@@ -7,7 +7,7 @@ class AppNavbar extends Component {
       <div>
         <Navbar color="dark" dark expand="sm" className="mb-5">
           <Container>
-            <NavbarBrand href="/">VIRTUO</NavbarBrand>
+            <NavbarBrand href="/carlist">VIRTUO</NavbarBrand>
           </Container>
         </Navbar>
       </div>
