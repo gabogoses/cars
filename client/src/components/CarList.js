@@ -1,6 +1,14 @@
 /* eslint-disable no-useless-constructor */
 import React, { Component } from "react";
-import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
+import {
+  Container,
+  ListGroup,
+  ListGroupItem,
+  Button,
+  Badge,
+  CardGroup,
+  Card
+} from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
 import { getCars, deleteCar } from "../actions/carAction.js";
@@ -26,43 +34,45 @@ class Carlist extends Component {
     return (
       <Container>
         <CarModal />
-        <ListGroup>
-          <TransitionGroup className="car-list">
-            {cars.map(car => (
-              <CSSTransition key={car._id} timeout={500} classNames="fade">
-                <ListGroupItem>
-                  <h1> {car.name} </h1>
-                  {car.availability ? (
-                    <h2>status: Available</h2>
-                  ) : (
-                    <h2>Status: Unavailable</h2>
-                  )}
-                  <h2>
-                    Station Name:{" "}
-                    {car.station ? car.station.stationName : "Undefiend"}
-                  </h2>
-                  <br />
+        <TransitionGroup className="car-list">
+          {cars.map(car => (
+            <CSSTransition key={car._id} timeout={500} classNames="fade">
+              <CardGroup>
+                <Card style={{ marginTop: "1rem" }}>
+                  <ListGroupItem>
+                    <h1>
+                      <Badge color="light">{car.name} </Badge>
+                    </h1>
+                    {car.availability ? (
+                      <h4>Status: Available</h4>
+                    ) : (
+                      <h4>Status: Unavailable</h4>
+                    )}
+                    <h4>
+                      Station Name:{" "}
+                      {car.station ? car.station.stationName : "Undefiend"}
+                    </h4>
+                    <Link
+                      to={"/edit/" + car._id}
+                      className="btn btn-success btn-sm "
+                    >
+                      Edit
+                    </Link>
 
-                  <Link
-                    to={"/edit/" + car._id}
-                    className="btn btn-success btn-sm "
-                  >
-                    Edit
-                  </Link>
-
-                  <Button
-                    color="danger"
-                    style={{ marginLeft: "1rem" }}
-                    size="sm"
-                    onClick={this.onDeleteClick.bind(this, car._id)}
-                  >
-                    Delete
-                  </Button>
-                </ListGroupItem>
-              </CSSTransition>
-            ))}
-          </TransitionGroup>
-        </ListGroup>
+                    <Button
+                      color="danger"
+                      style={{ marginLeft: "0.3rem" }}
+                      size="sm"
+                      onClick={this.onDeleteClick.bind(this, car._id)}
+                    >
+                      Delete
+                    </Button>
+                  </ListGroupItem>
+                </Card>
+              </CardGroup>
+            </CSSTransition>
+          ))}
+        </TransitionGroup>
       </Container>
     );
   }
