@@ -2,6 +2,17 @@ const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+
+const carRoutes = require("./api/routes/cars");
+const stationRoutes = require("./api/routes/stations");
+
+mongoose.connect(
+  "mongodb+srv://gabriel:" +
+    process.env.MONGO_PW +
+    "@virtuo-db-dcsxm.mongodb.net/virtuo?retryWrites=true",
+  { useNewUrlParser: true }
+);
 
 app.use(morgan("dev"));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -19,6 +30,10 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+// Routes
+app.use("/cars", carRoutes);
+app.use("/stations", stationRoutes);
 
 app.use((req, res, next) => {
   const error = new Error("Not found 🧟");
