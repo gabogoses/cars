@@ -17,18 +17,24 @@ export const getStations = () => dispatch => {
   });
 };
 
-export const deleteStation = id => {
-  return {
-    type: DELETE_STATION,
-    payload: id
-  };
+export const deleteStation = id => dispatch => {
+  axios.delete(`/stations/${id}`).then(res =>
+    dispatch({
+      type: DELETE_STATION,
+      payload: id
+    })
+  );
 };
 
-export const addStation = station => {
-  return {
-    type: ADD_STATION,
-    payload: station
-  };
+export const addStation = stationName => dispatch => {
+  dispatch(setStationLoading());
+  axios.post("/stations", stationName).then(res =>
+    dispatch({
+      type: ADD_STATION,
+      payload: stationName
+    })
+  );
+  console.log(stationName);
 };
 
 export const setStationLoading = () => {

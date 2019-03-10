@@ -18,7 +18,7 @@ class StationModal extends Component {
     super(props);
     this.state = {
       modal: false,
-      name: ""
+      stationName: ""
     };
   }
 
@@ -36,9 +36,10 @@ class StationModal extends Component {
     e.preventDefault();
 
     const newStation = {
-      name: this.state.name
+      stationName: this.state.stationName
     };
     this.props.addStation(newStation);
+    console.log(newStation);
   };
 
   render() {
@@ -59,7 +60,7 @@ class StationModal extends Component {
                 <Label for="car" />
                 <Input
                   type="text"
-                  name="name"
+                  name="stationName"
                   id="station"
                   placeholder="Add Station"
                   onChange={this.onChange}

@@ -68,14 +68,15 @@ router.get("/:stationId", (req, res, next) => {
 
 router.delete("/:stationId", (req, res, next) => {
   const car = req.params.id;
-  Station.remove({ _id: req.params.stationId })
+  const id = req.params.stationId;
+  Station.remove({ _id: id })
     .exec()
     .then(result => {
       Car.findOneAndUpdate(
-        { _id: result.car },
+        { _id: result.cars },
         {
           $push: {
-            cars: result._id
+            cars: result.id
           }
         },
         { returnNewDocument: true }

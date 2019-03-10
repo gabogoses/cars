@@ -21,18 +21,18 @@ class Stationlist extends Component {
       <Container>
         <ListGroup>
           <TransitionGroup className="car-list">
-            {stations.map(({ _id, stationName }) => (
-              <CSSTransition key={_id} timeout={500} classNames="fade">
+            {stations.map(station => (
+              <CSSTransition key={station._id} timeout={500} classNames="fade">
                 <ListGroupItem>
+                  <h1>{station.stationName}</h1>
                   <Button
                     className="remove-btn"
                     color="danger"
                     size="sm"
-                    onClick={this.onDeleteClick.bind(this, _id)}
+                    onClick={this.onDeleteClick.bind(this, station._id)}
                   >
                     &times;
                   </Button>
-                  {stationName}
                 </ListGroupItem>
               </CSSTransition>
             ))}
