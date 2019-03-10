@@ -22,7 +22,6 @@ router.get("/", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
-  console.log("TEST" + JSON.stringify(req.body));
   const station = req.params.id;
   Station.findOne(req.params.id).then(station => {
     const car = new Car({
@@ -105,9 +104,21 @@ router.patch("/:carId", (req, res, next) => {
 });
 
 router.delete("/:carId", (req, res, next) => {
+  const station = req.params.id;
   const id = req.params.carId;
   Car.remove({ _id: id })
     .exec()
+    .then(result => {
+      Station.findOneAndUpdate(
+        { _id: result.station },
+        {
+          $push: {
+            station: result._id
+          }
+        },
+        { returnNewDocument: true }
+      );
+    })
     .then(result => {
       res.status(200).json({
         message: "Car deleted 🗑️"
