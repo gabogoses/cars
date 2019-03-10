@@ -4,7 +4,7 @@ Virtuo App is a Node.js / React app who displays cars and stations. You can add 
 
 ## Installation
 
-Use the package manager [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) to install Virtuo App (please do it in ain folder and into client/ folder).
+Use the package manager [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) to install Virtuo App (please do it inside main folder and into client/ folder).
 
 ```bash
 npm install
