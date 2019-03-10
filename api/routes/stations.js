@@ -67,8 +67,20 @@ router.get("/:stationId", (req, res, next) => {
 });
 
 router.delete("/:stationId", (req, res, next) => {
+  const car = req.params.id;
   Station.remove({ _id: req.params.stationId })
     .exec()
+    .then(result => {
+      Car.findOneAndUpdate(
+        { _id: result.car },
+        {
+          $push: {
+            cars: result._id
+          }
+        },
+        { returnNewDocument: true }
+      );
+    })
     .then(result => {
       res.status(200).json({
         message: "Station deleted"
