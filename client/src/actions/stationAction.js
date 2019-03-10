@@ -34,7 +34,6 @@ export const addStation = stationName => dispatch => {
       payload: stationName
     })
   );
-  console.log(stationName);
 };
 
 export const setStationLoading = () => {

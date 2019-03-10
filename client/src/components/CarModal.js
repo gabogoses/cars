@@ -39,7 +39,6 @@ class CarModal extends Component {
 
   async componentDidMount() {
     const response = await axios.get("http://localhost:5000/stations");
-    console.log(response);
     await this.setState({
       loading: false,
       stations: response.data
@@ -72,15 +71,12 @@ class CarModal extends Component {
       availability: this.state.rSelected,
       station: this.state.station
     };
-    console.log(newCar);
 
     this.props.addCar(newCar);
   };
 
   onRadioBtnClick(rSelected) {
-    console.log(this.state);
     this.setState({ rSelected });
-    console.log(this.state);
   }
 
   toggleDropDown() {
@@ -100,7 +96,7 @@ class CarModal extends Component {
       <div>
         <Button
           color="dark"
-          style={{ marginBottom: "4rem" }}
+          style={{ marginTop: "1.5rem", marginBottom: "1.5rem" }}
           onClick={this.toggle}
         >
           Add Car
@@ -152,7 +148,6 @@ class CarModal extends Component {
                           <DropdownItem name="station" key={station._id}>
                             <div
                               onClick={() => {
-                                console.log(station);
                                 this.setState({
                                   station: station._id
                                 });

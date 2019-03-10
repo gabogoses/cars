@@ -6,6 +6,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
 import { getStations, deleteStation } from "../actions/stationAction.js";
 import PropTypes from "prop-types";
+import StationModal from "./StationModal";
 
 class Stationlist extends Component {
   componentDidMount() {
@@ -19,6 +20,7 @@ class Stationlist extends Component {
     const { stations } = this.props.station;
     return (
       <Container>
+        <StationModal />
         <ListGroup>
           <TransitionGroup className="car-list">
             {stations.map(station => (
@@ -31,7 +33,7 @@ class Stationlist extends Component {
                     size="sm"
                     onClick={this.onDeleteClick.bind(this, station._id)}
                   >
-                    &times;
+                    Delete
                   </Button>
                 </ListGroupItem>
               </CSSTransition>

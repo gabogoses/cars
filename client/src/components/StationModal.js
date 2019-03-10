@@ -39,7 +39,6 @@ class StationModal extends Component {
       stationName: this.state.stationName
     };
     this.props.addStation(newStation);
-    console.log(newStation);
   };
 
   render() {
@@ -47,7 +46,7 @@ class StationModal extends Component {
       <div>
         <Button
           color="dark"
-          style={{ marginBottom: "4rem" }}
+          style={{ marginTop: "1.5rem", marginBottom: "1.5rem" }}
           onClick={this.toggle}
         >
           Add Station
