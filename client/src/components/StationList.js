@@ -1,7 +1,15 @@
 /* eslint-disable react/no-typos */
 /* eslint-disable no-unused-expressions */
 import React, { Component } from "react";
-import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
+import {
+  Container,
+  ListGroup,
+  ListGroupItem,
+  Button,
+  Badge,
+  Card,
+  CardGroup
+} from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { connect } from "react-redux";
 import { getStations, deleteStation } from "../actions/stationAction.js";
@@ -25,17 +33,23 @@ class Stationlist extends Component {
           <TransitionGroup className="car-list">
             {stations.map(station => (
               <CSSTransition key={station._id} timeout={500} classNames="fade">
-                <ListGroupItem>
-                  <h1>{station.stationName}</h1>
-                  <Button
-                    className="remove-btn"
-                    color="danger"
-                    size="sm"
-                    onClick={this.onDeleteClick.bind(this, station._id)}
-                  >
-                    Delete
-                  </Button>
-                </ListGroupItem>
+                <CardGroup>
+                  <Card style={{ marginTop: "1rem" }}>
+                    <ListGroupItem>
+                      <h1>
+                        <Badge color="light">{station.stationName}</Badge>
+                      </h1>
+                      <Button
+                        className="remove-btn"
+                        color="danger"
+                        size="sm"
+                        onClick={this.onDeleteClick.bind(this, station._id)}
+                      >
+                        Delete
+                      </Button>
+                    </ListGroupItem>
+                  </Card>
+                </CardGroup>
               </CSSTransition>
             ))}
           </TransitionGroup>
