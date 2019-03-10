@@ -4,6 +4,7 @@ import AppNavbar from "./components/AppNavbar";
 import CarList from "./components/CarList";
 import CarModal from "./components/CarModal";
 import StationList from "./components/StationList";
+import StationModal from "./components/StationModal";
 
 import { Container } from "reactstrap";
 import { Provider } from "react-redux";
@@ -22,6 +23,7 @@ class App extends Component {
             <CarList />
             <br />
             <br />
+            <StationModal />
             <StationList />
           </Container>
         </div>
