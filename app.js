@@ -8,7 +8,9 @@ const carRoutes = require("./api/routes/cars");
 const stationRoutes = require("./api/routes/stations");
 
 mongoose.connect(
-  "mongodb+srv://gilles:RhXJjV4d4oDy1GnE@db-9u6wa.mongodb.net/test?retryWrites=true",
+  "mongodb+srv://gabriel:" +
+    process.env.MONGO_PW +
+    "@virtuo-db-dcsxm.mongodb.net/virtuo?retryWrites=true",
   { useNewUrlParser: true }
 );
 
