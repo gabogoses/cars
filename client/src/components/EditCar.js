@@ -5,7 +5,6 @@ import { updateCar } from "../actions/carAction";
 import {
   Button,
   ButtonGroup,
-  InputGroup,
   InputGroupButtonDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -121,6 +120,7 @@ class EditCar extends Component {
             <ButtonGroup>
               <Button
                 color="primary"
+                style={{ marginRight: "1rem" }}
                 onClick={() => this.onChangeCarAvailability(true)}
                 active={this.state.availability === true}
               >
@@ -128,41 +128,40 @@ class EditCar extends Component {
               </Button>
               <Button
                 color="primary"
+                style={{ marginRight: "1rem" }}
                 onClick={() => this.onChangeCarAvailability(false)}
                 active={this.state.availability === false}
               >
                 Unavailable
               </Button>
+              <InputGroupButtonDropdown
+                addonType="append"
+                isOpen={this.state.dropdownOpen}
+                toggle={this.toggleDropDown.bind(this)}
+              >
+                <DropdownToggle caret>Station</DropdownToggle>
+                <DropdownMenu>
+                  {this.state.stations.map(station => (
+                    <DropdownItem name="station" key={station._id}>
+                      <div
+                        onClick={() => {
+                          this.setState({
+                            station: station._id
+                          });
+                        }}
+                      >
+                        {station.stationName}
+                      </div>
+                    </DropdownItem>
+                  ))}
+                </DropdownMenu>
+              </InputGroupButtonDropdown>
             </ButtonGroup>
-            <div className="form-group" style={{ marginTop: "12px" }}>
-              <InputGroup>
-                <InputGroupButtonDropdown
-                  addonType="append"
-                  isOpen={this.state.dropdownOpen}
-                  toggle={this.toggleDropDown.bind(this)}
-                >
-                  <DropdownToggle caret>Station</DropdownToggle>
-                  <DropdownMenu>
-                    {this.state.stations.map(station => (
-                      <DropdownItem name="station" key={station._id}>
-                        <div
-                          onClick={() => {
-                            this.setState({
-                              station: station._id
-                            });
-                          }}
-                        >
-                          {station.stationName}
-                        </div>
-                      </DropdownItem>
-                    ))}
-                  </DropdownMenu>
-                </InputGroupButtonDropdown>
-              </InputGroup>
-            </div>
+
             <div className="form-group">
               <input
                 type="submit"
+                style={{ marginTop: "1rem" }}
                 value="Update Car"
                 className="btn btn-primary"
               />
