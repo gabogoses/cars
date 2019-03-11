@@ -8,31 +8,18 @@ services:
     volumes:
       - ./client:/client
       - /client/node_modules
-    links:
-      - api
-    networks: webappnetwork
-  api:
-    image: webapp-api
+  app:
+    container_name: app
     restart: always
+    build: .
     ports:
-      - "5000:5000"
+      - "3000:3000"
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    image: mongo
     volumes:
-      - ./api:/api
-      - /api/node_modules
-    depends_on:
-      - mongodb
-    networks: webappnetwork
-    mongodb:
-      image: mongo
-      restart: always
-      container_name: mongodb
-      volumes:
-        - ./data-node:/data/db
-      ports:
-        - 27017:27017
-      command: mongod --noauth --smallfiles
-      networks:
-        - webappnetwork
-  networks:
-    webappnetwork:
-      driver: bridge
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
