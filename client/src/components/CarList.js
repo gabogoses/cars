@@ -49,7 +49,7 @@ class Carlist extends Component {
                     )}
                     <h4>
                       Station Name:{" "}
-                      {car.station ? car.station.stationName : "Undefiend"}
+                      {car.station ? car.station.stationName : "Undefined"}
                     </h4>
                     <Link
                       to={"/edit/" + car._id}
