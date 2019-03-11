@@ -6,6 +6,7 @@ import StationModal from "./components/StationModal";
 import CarList from "./components/CarList";
 import CarEdit from "./components/EditCar";
 import StationList from "./components/StationList";
+import Footer from "./components/Footer";
 
 import { Container } from "reactstrap";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
@@ -40,6 +41,7 @@ class App extends Component {
             <Route path="/stationlist" component={StationList} />
             <Route path="/addstation" component={StationModal} />
           </Switch>
+          <Footer />
         </Provider>
       </Router>
     );
