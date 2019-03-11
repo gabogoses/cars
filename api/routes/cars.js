@@ -105,7 +105,7 @@ router.post("/update/:carId", (req, res, next) => {
 router.delete("/:carId", (req, res, next) => {
   const station = req.params.id;
   const id = req.params.carId;
-  Car.remove({ _id: id })
+  Car.deleteOne({ _id: id })
     .exec()
     .then(result => {
       Station.findOneAndUpdate(

@@ -10,7 +10,7 @@ mongoose.connect(
   "mongodb+srv://gabriel:" +
     process.env.MONGO_PW +
     "@virtuo-db-dcsxm.mongodb.net/virtuo?retryWrites=true",
-  { useNewUrlParser: true }
+  { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false }
 );
 
 app.use(bodyParser.urlencoded({ extended: false }));

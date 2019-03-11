@@ -66,7 +66,7 @@ router.get("/:stationId", (req, res, next) => {
 router.delete("/:stationId", (req, res, next) => {
   const car = req.params.id;
   const id = req.params.stationId;
-  Station.remove({ _id: id })
+  Station.deleteOne({ _id: id })
     .exec()
     .then(result => {
       Car.findOneAndUpdate(
