@@ -7,8 +7,8 @@ const Car = require("../models/car");
 
 router.get("/", (req, res, next) => {
   Station.find()
-    .populate({ path: "cars", select: "name" })
     .select()
+    .populate({ path: "cars", select: "name" })
     .exec()
     .then(docs => {
       res.status(200).json(docs);
@@ -39,10 +39,6 @@ router.post("/", (req, res, next) => {
         error: err
       });
     });
-  res.status(201).json({
-    message: "Station created",
-    station: station
-  });
 });
 
 router.get("/:stationId", (req, res, next) => {
@@ -54,10 +50,11 @@ router.get("/:stationId", (req, res, next) => {
         return res.status(404).json({
           message: "Station not found"
         });
+      } else {
+        res.status(200).json({
+          station: station
+        });
       }
-      res.status(200).json({
-        station: station
-      });
     })
     .catch(err => {
       res.status(500).json({

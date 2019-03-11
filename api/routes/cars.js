@@ -7,7 +7,6 @@ const Station = require("../models/station");
 
 router.get("/", (req, res, next) => {
   Car.find()
-
     .select("name availability")
     .populate("station", { cars: 0, _id: 0, __v: 0 })
     .exec()
@@ -110,10 +109,10 @@ router.delete("/:carId", (req, res, next) => {
     .exec()
     .then(result => {
       Station.findOneAndUpdate(
-        { _id: result.station },
+        { _id: result.stations },
         {
           $push: {
-            station: result._id
+            stations: result._id
           }
         },
         { returnNewDocument: true }
