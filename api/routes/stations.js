@@ -72,8 +72,8 @@ router.delete("/:stationId", (req, res, next) => {
   Station.remove({ _id: id })
     .exec()
     .then(result => {
-      Car.findOneAndUpdate(
-        { _id: result.cars },
+      Car.remove(
+        { _id: req.params.id },
         {
           $push: {
             cars: result.id

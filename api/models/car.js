@@ -13,7 +13,7 @@ const carSchema = mongoose.Schema({
     required: true
   },
   station: {
-    type: String,
+    type: Schema.Types.ObjectId,
     ref: "Station",
     required: true
   }

@@ -9,7 +9,7 @@ router.get("/", (req, res, next) => {
   Car.find()
 
     .select("name availability")
-    .populate("station")
+    .populate("station", { cars: 0, _id: 0, __v: 0 })
     .exec()
     .then(docs => {
       res.status(200).json(docs);
