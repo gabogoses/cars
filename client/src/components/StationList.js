@@ -1,9 +1,9 @@
+/* eslint-disable no-useless-constructor */
 /* eslint-disable react/no-typos */
 /* eslint-disable no-unused-expressions */
 import React, { Component } from "react";
 import {
   Container,
-  ListGroup,
   ListGroupItem,
   Button,
   Badge,
@@ -29,31 +29,28 @@ class Stationlist extends Component {
     return (
       <Container>
         <StationModal />
-        <ListGroup>
-          <TransitionGroup className="car-list">
-            {stations.map(station => (
-              <CSSTransition key={station._id} timeout={500} classNames="fade">
-                <CardGroup>
-                  <Card style={{ marginTop: "1rem" }}>
-                    <ListGroupItem>
-                      <h1>
-                        <Badge color="light">{station.stationName}</Badge>
-                      </h1>
-                      <Button
-                        className="remove-btn"
-                        color="danger"
-                        size="sm"
-                        onClick={this.onDeleteClick.bind(this, station._id)}
-                      >
-                        Delete
-                      </Button>
-                    </ListGroupItem>
-                  </Card>
-                </CardGroup>
-              </CSSTransition>
-            ))}
-          </TransitionGroup>
-        </ListGroup>
+        <TransitionGroup className="station-list">
+          {stations.map(station => (
+            <CSSTransition key={station._id} timeout={500} classNames="fade">
+              <CardGroup>
+                <Card style={{ marginTop: "1rem" }}>
+                  <ListGroupItem>
+                    <h1>
+                      <Badge color="light">{station.stationName}</Badge>
+                    </h1>
+                    <Button
+                      color="danger"
+                      size="sm"
+                      onClick={this.onDeleteClick.bind(this, station._id)}
+                    >
+                      Delete
+                    </Button>
+                  </ListGroupItem>
+                </Card>
+              </CardGroup>
+            </CSSTransition>
+          ))}
+        </TransitionGroup>
       </Container>
     );
   }
