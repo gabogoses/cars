@@ -6,7 +6,8 @@ import {
 } from "../actions/types";
 
 const initialState = {
-  stations: []
+  stations: [],
+  loading: false
 };
 
 export default function(state = initialState, action) {
@@ -21,7 +22,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         stations: state.stations.filter(
-          station => station.id !== action.payload
+          station => station._id !== action.payload
         )
       };
     case ADD_STATION:
