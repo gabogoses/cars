@@ -1,6 +1,6 @@
-# 🏎️ VIRTUO APP
+# 🏎️ Cars App
 
-Virtuo App is a Node.js / React app who displays cars and stations. You can add cars, stations and modify them.
+Cars is a Node.js / React app who displays cars and stations. You can add cars, stations and modify them.
 
 ## Installation
 
